@@ -5,19 +5,22 @@
 
     const film = graphql`
         query Film {
-            film(id: "ZmlsbXM6MQ==") {
+            film(id: "wrong-movie-id") {
                 id
                 title
             }
         }
     `;
 
-    $: console.log($film?.data?.film);
+    // $: film.fetch();
+
+    $: console.log($film);
 </script>
 
-{#if $film?.data}
+{#if $film?.errors}
+    <p>Error: {$film.errors[0].message}</p>
+{:else if $film?.data}
     <h1>Movie: {$film.data.film.title}</h1>
-{:else if $film?.errors}
-    <p>Error</p>
 {/if}
+
 <slot />
