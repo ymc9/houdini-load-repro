@@ -18,6 +18,6 @@
 {#if $film?.data}
     <h1>Movie: {$film.data.film.title}</h1>
 {:else if $film?.errors}
-    <p>Error: {$film.errors[0].message}</p>
+    <p>Error</p>
 {/if}
 <slot />
